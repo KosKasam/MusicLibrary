@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Customer Login</title>
+   </head>
+
+   <body>
+   <div style="height:900px; background-color: lavender;" align="center">
+
+<?php
+
+
+
+include "dbconnect.php";
+
+$sql = "Select Song_Name from Song natural join Has_In_Library where Song.Song_ID = Has_In_Library.Song_ID and  Account.Password = $i_password";
+$result = query($sql);
+
+if ($result->num_rows > 0) {
+	
+	<br><h3> Songs In Your Library </h3> </br>
+	
+	<table>
+
+	while($row = $result->fetch_assoc()) {
+		<tr>
+        <td>  '$row["Song_Name"]' </td>
+		</tr>
+    }
+	
+	</table>
+	
+    
+	
+} else {
+    echo "0 results";
+}
+
+?>
+
+<hr width="50">
+<a href="CustomerHome.php" style="color:blue;font-weight:bold;">Back</a>
+<hr width="50">
+   </div>
+   
+   </body>
+</html>
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Customer Login</title>
+   </head>
+
+   <body>
+   <div style="height:900px; background-color: lavender;" align="center">
+   
+   <?php 
+		    if(isset($_POST['Login'])){
+				require("dbconnect.php");
+				$i_name = $_POST['i_ID'];
+				$i_password = $_POST['i_password'];
+			
+				$sql = "Select * from Account natural join Accout_Settings where Accout_Settings.password = $i_password";
+				$retval = mysql_query($conn, $sql);
+			
+				if(! $retval){
+					echo "Login Failed<br>Check username or password or create and account";
+				}else{
+					echo "Login Successful";
+				}
+			}else {
+	?>
+	  <br><br><br><br>
+     <p>Enter Your Account credentials <br> </p>
+      <form method = "post" action = "<?php $_PHP_SELF ?>">
+         <table width = "600" border = "0" cellspacing = "1" cellpadding = "2">
+            <tr>
+               <td width = "250">Username: </td>
+               <td>
+                  <input name = "i_Username" type = "text" id = "i_ID">
+               </td>
+            </tr>
+         
+            <tr>
+               <td width = "250">Password: </td>
+               <td>
+                  <input name = "i_Password" type = "text" id = "i_password">
+               </td>
+            </tr>
+			<tr>
+               <td width = "250"> </td>
+               <td>
+                  <input name = "Login" type = "submit" id = "Login"  value = "Login">
+               </td>
+            </tr>
+        
+			
+         </table>
+		 
+		<?php
+			}
+		?>
+   
+	  
+   <hr width="50">
+<a href="Frontpage.html" style="color:blue;font-weight:bold;">Home</a>
+<hr width="50">
+   </div>
+   
+   </body>
+</html>
